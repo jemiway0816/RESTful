@@ -29,6 +29,4 @@ struct Spend : Codable {
         let userDefaults = UserDefaults.standard
         userDefaults.set(data, forKey: "spends")
     }
-    
-    
 }

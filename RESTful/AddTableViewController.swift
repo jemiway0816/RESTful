@@ -11,10 +11,9 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
     
     @IBOutlet var addDate: UIDatePicker!
     @IBOutlet var addMoneyTextField: UITextField!
-    
     @IBOutlet var addDetailTextView: UITextView!
-    
     @IBOutlet weak var pickerview: UIPickerView!
+    
     var spend:Spend!
 
     let typeList = ["吃飯", "買衣服", "住宿", "交通費", "學習", "娛樂" , "其他"]
@@ -57,6 +56,8 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
         pickerview.selectRow(position, inComponent: 0, animated: true)
         
         if spend != nil {
+            
+            // 將之前儲存的資料顯示在畫面上
             addMoneyTextField.text = String(spend.menoy)
             addDate.date = spend.date
             addDetailTextView.text = spend.detail
@@ -77,6 +78,7 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
+        // 消費金額沒輸入不能按確定
         if addMoneyTextField.text?.isEmpty == false {
             return true
         }else {
@@ -93,28 +95,15 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy/M/d HH:mm"
-//        let dateIndex = dateFormatter.string(from: addDate.date)
-        
+        // 準備回上一頁的資料
         let backMoney = Int(addMoneyTextField.text!) ?? 0
         let backDetail = addDetailTextView.text!
         let backType = typeListDidSelect
-        
-//        print(typeListDidSelect)
-        
         spend = Spend(date: addDate.date, menoy: backMoney, detail: backDetail, type: backType)
-        
-        
-//        UserDefaults.standard.set(backType, forKey: "dateIndex_type")
-//        UserDefaults.standard.set(backMoney, forKey: "dateIndex_money")
-//        UserDefaults.standard.set(backDetail, forKey: "dateIndex_detail")
-//        UserDefaults.standard.set(dateIndex, forKey: "dateIndex")
-        
     }
 }
 
-
+// 滾輪設定
 extension AddTableViewController:UIPickerViewDataSource,UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -130,11 +119,7 @@ extension AddTableViewController:UIPickerViewDataSource,UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let position = (numberOfRow / 2) + (row % typeList.count)
-        
         pickerview.selectRow(position, inComponent: 0, animated: false)
-//        pickerview.selectRow(row, inComponent: component, animated: false)
-        
         typeListDidSelect = typeList[row % typeList.count]
     }
-    
 }
