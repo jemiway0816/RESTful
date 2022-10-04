@@ -9,7 +9,7 @@ import UIKit
 
 class SpendTableViewController: UITableViewController {
 
-    var spends = [Spend]() {
+    var spends = [Spend]()  {
         
         didSet {
             
@@ -82,6 +82,7 @@ class SpendTableViewController: UITableViewController {
         present(controller, animated: true, completion: nil)
     }
     
+    // 跳到下一頁
     @IBSegueAction func editTable(_ coder: NSCoder) -> AddTableViewController? {
         
         let controller = AddTableViewController(coder: coder)

@@ -62,6 +62,7 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
             addDate.date = spend.date
             addDetailTextView.text = spend.detail
             
+            // 計算滾輪位置
             for (index, value) in typeList.enumerated() {
                 
                 if value == spend.type {
@@ -99,7 +100,8 @@ class AddTableViewController: UITableViewController, UITextViewDelegate {
         let backMoney = Int(addMoneyTextField.text!) ?? 0
         let backDetail = addDetailTextView.text!
         let backType = typeListDidSelect
-        spend = Spend(date: addDate.date, menoy: backMoney, detail: backDetail, type: backType)
+        spend = Spend(date: addDate.date, menoy: backMoney,
+                      detail: backDetail, type: backType)
     }
 }
 
@@ -109,15 +111,20 @@ extension AddTableViewController:UIPickerViewDataSource,UIPickerViewDelegate {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         return numberOfRow
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
         return typeList[row % typeList.count]
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,
+                    inComponent component: Int) {
+        
         let position = (numberOfRow / 2) + (row % typeList.count)
         pickerview.selectRow(position, inComponent: 0, animated: false)
         typeListDidSelect = typeList[row % typeList.count]

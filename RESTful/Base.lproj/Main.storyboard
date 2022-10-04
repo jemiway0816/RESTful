@@ -188,7 +188,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="209"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="不解釋" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wHe-Ub-4yr">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="想花錢" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wHe-Ub-4yr">
                                                     <rect key="frame" x="30" y="34" width="349" height="154"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>

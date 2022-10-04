@@ -15,18 +15,19 @@ struct Spend : Codable {
     var type:String
     
     static func loadSpends() -> [Spend]? {
-        
+
         let userDefaults = UserDefaults.standard
         guard let data = userDefaults.data(forKey: "spends") else { return nil }
         let decoder = JSONDecoder()
         return try? decoder.decode([Spend].self, from: data)
     }
-    
+
     static func saveSpends(_ spends:[Spend]) {
-        
+
         let encoder = JSONEncoder()
         guard let data = try? encoder.encode(spends) else { return }
         let userDefaults = UserDefaults.standard
         userDefaults.set(data, forKey: "spends")
     }
+   
 }
